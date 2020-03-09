@@ -65,7 +65,16 @@ auc <- auc@y.values[[1]]
 n <- sample(nrow(train_dat), 5000)
 train <- train_dat[n,] %>%
   mutate(Readmit_30=factor(Readmit_30, labels=c("yes","no"), levels=c(1,0))) %>%
-  select(-c(LOCATION, INCOME_QRTL, GENDER, AWEEKEND, HCUP_ED, DISPOSITION))
+  select(-c(LOCATION, INCOME_QRTL, AWEEKEND, HCUP_ED, DISPOSITION))
+
+## Assign more weight to false negative predictions
+
+## Creates 2x2 matrix
+matrix_dimensions <- list(c("yes", "no"), c("yes", "no"))
+names(matrix_dimensions) <- c("predicted","actual")
+## Assigns cost
+error_cost <- matrix(c(0,3,1,0), nrow=2, dimnames=matrix_dimensions)
+error_cost
 
 model <- C5.0(train[,setdiff(colnames(train),"Readmit_30")], train$Readmit_30, costs=error_cost)
 

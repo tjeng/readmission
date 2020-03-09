@@ -6,6 +6,10 @@
 
 ![Objectives](./images/objective.png)
 
+We will experiment with logistic regression and decision tree models as the results of these models are easy to interpret, especially the logistic regression model which shows us the effect of each variable. We will aim to minimize false negatives as we want to be conservative and take action on patients who will be readmitted, rather than missing them out as that will have negative impact on the patient's health and hospitals' financials. 
+
+Statistical analysis (hypothesis testing) will be done to see if a variable significant leads to higher or lower readmission rate. 
+
 # Defining the Problem
 
 ![Problem](./images/problem.png)
@@ -68,9 +72,15 @@ It is interesting to see a quadratic relationship between readmission and month 
 
 ## Comparing between logistic regression & decision tree model
 
+Decision tree model is tuned by hand by removing features that are less important to the model and assigning more weight to false negative predictions so that the cutoff for a positive prediction is adjusted to minimize false negatives.
+
 ![Compare](./images/compare.png)
 
 Although logistic regression model has a higher accuracy, it has a higher false negative rate and lower AUC than the decision tree model. The goal of predicting 30-day readmission is so that providers can take preventative measures to prevent patient readmission after discharge. False negatives should be minimized because we do not want to miss a patient who will be readmitted but the algorithm predict as not readmitted, which would negatively impact financial health of the hospital.
+
+![Decision](./images/decision.png)
+
+The above plot shows how the decision tree determines if a patient will be readmitted. We can consider the output of the decision tree to understand algorithm performance and build multiple trees using Random Forest or Gradient Boosting to get better results.
 
 # Deploying model
 
@@ -79,7 +89,6 @@ Since out goal is to minimize false negaives, we will proceed with the decision 
 Although the model allows providers to intervene patients who are predicted to be readmitted, the model can be further improved via the following:
 
 ![Improvement](./images/improvement.png)
-
 
 # Actionable recommendations
 
