@@ -1,6 +1,6 @@
 # Analyzing and predicting 30-day readmission based on the 4D Data Science Framework
 
-![4D](./images/4D.png)
+![4D](./images/4D.PNG)
 
 # Objectives
 
